@@ -31,15 +31,33 @@ class CardGame:
         elif len(self.p1.deck) > len(self.p2.deck):
             return self.p2
         else:
-            return None
+            return f"No one won this game, A TIE!"
 
     # פעולה שמנהלת סיבוב ומדפיסה את המנצח בהתאם
     def round(self):
         c1 = self.p1.get_card()
         c2 = self.p2.get_card()
-        print(f"{self.p1.name} card is: {c1.value} of {c1.suit}, {self.p2.name} card is: {c2.value} of {c2.suit}")
+        changed1 = False
+        print(f"\n\n{self.p1.name} card is: {c1.value} of {c1.suit}, {self.p2.name} card is: {c2.value} of {c2.suit}")
+        if c1.value == 1 and c2.value == 1:
+            if self.deck.names[c1.suit] > self.deck.names[c2.suit]:
+                self.p2.add_card(c1)
+                self.p2.add_card(c2)
+                print(f"{self.p1.name} wins!")
+            else:
+                self.p1.add_card(c1)
+                self.p1.add_card(c2)
+                print(f"{self.p2.name} wins!")
+        elif c1.value == 1 and c2.value > 1:
+            self.p2.add_card(c1)
+            self.p2.add_card(c2)
+            print(f"{self.p1.name} wins!")
+        elif c1.value > 1 and c2.value == 1:
+            self.p1.add_card(c1)
+            self.p1.add_card(c2)
+            print(f"{self.p2.name} wins!")
 
-        if c1.value > c2.value:
+        elif c1.value > c2.value:
             self.p2.add_card(c1)
             self.p2.add_card(c2)
             print(f"{self.p1.name} wins!")

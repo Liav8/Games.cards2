@@ -31,7 +31,7 @@ class TestCardGame(TestCase):
     # בדיקה שמראה לי שאם אני מנסה לאפס משחק לאחר שהתחיל תעלה לי שגיאה שקבעתי מראה
     def test_NewGame1(self):
         with self.assertRaises(Exception):
-            self.game.new_game()
+            self.game1.new_game()
 
     # בדיקה שבודקת שכאשר אני מתחיל משחק החבילה שלו מתערבבת
     def test_NewGame2(self):
@@ -45,17 +45,17 @@ class TestCardGame(TestCase):
 
     # בודק האם המנצח הוא שחקן אחד כאשר לשחקן אחד יש פחות קלפים בחבילה
     def test_get_winnerp1(self):
-        self.game.p1.get_card()
-        self.assertIs(self.game.p1, self.game.get_winner())
+        self.game1.p1.get_card()
+        self.assertIs(self.game1.p1, self.game1.get_winner())
 
     # בודק האם המנצח הוא שחקן שתיים כאשר לשחקן שתיים יש פחות קלפים בחבילה
     def test_get_winnerp2(self):
-        self.game.p2.get_card()
-        self.assertIs(self.game.p2, self.game.get_winner())
+        self.game1.p2.get_card()
+        self.assertIs(self.game1.p2, self.game1.get_winner())
 
     # בודק האם אין מנצח אם לשניהם יש את אותו מספר קלפים בחבילה
     def test_get_winnerNone(self):
-        self.assertIs(None, self.game.get_winner())
+        self.assertEqual("No one won this game, A TIE!", self.game1.get_winner())
 
 
     # בדיקה לאם שחקן מספר 1 מנצח בסיבוב אם המספר קלף שווה אך לשחקן מספר 1 חליפת קלף גבוהה יותר

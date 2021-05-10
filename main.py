@@ -1,21 +1,9 @@
 from CardGame import *
-# d1 = DeckOfCards()
-# p2 = Player()
-# p2.set_hand(d1)
-# print(p2)
-
-
-
-
-
-
-
 #יצירת משחק
-game = CardGame("Liav", "Saar", 26)
-game.p1.set_hand(game.deck)
-game.p2.set_hand(game.deck)
-# print(game.p1, "\n\n\n")
-# print(game.p2)
+game = CardGame("Liav", "Saar", 10)
+game.new_game()
+print(game.p1, "\n\n")
+print(game.p2, "\n\n")
 for i in range(10):
     game.round()
     # מה שבפלוס זה אופציה לנהל סיבוב בתוך עמוד ראשי

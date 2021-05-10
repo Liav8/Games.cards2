@@ -23,10 +23,11 @@ class Player:
             self.name = "Player"
 
 # פונקציה שמקבלת חבילה ראשית ומחלקת קלפים לשחקן
-    def set_hand(self, deck=[]):
-        if type(deck) is DeckOfCards and len(deck.cards) >= (self.num)*2:
-            for i in range(self.num):
-                self.deck.append(deck.deal_one())
+    def set_hand(self, deck):
+        if type(deck) is DeckOfCards:
+            if len(deck.cards) >= self.num:
+                for i in range(self.num):
+                    self.deck.append(deck.deal_one())
         else:
             raise Exception("ERROR: INVALID INPUT, Your Deck isn't a deck")
 
