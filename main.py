@@ -1,4 +1,14 @@
 from CardGame import *
+# d1 = DeckOfCards()
+# p2 = Player()
+# p2.set_hand(d1)
+# print(p2)
+
+
+
+
+
+
 
 #יצירת משחק
 game = CardGame("Liav", "Saar", 26)

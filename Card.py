@@ -1,7 +1,11 @@
 class Card: #מקבל ערך וצורה של קלף
+
     def __init__(self, value, suit):
-        self.value = value
-        self.suit = suit
+        if type(value) is int and type(suit) is str:
+            self.value = value
+            self.suit = suit
+        else:
+            raise Exception("The inputs aren't valid")
 
 # פונקציה שמדפיסה את קלף
     def __str__(self):
@@ -14,7 +18,16 @@ class Card: #מקבל ערך וצורה של קלף
 # מחזירה צורה של הקלף
     def card_name(self):
         names = {1: "Ace", 11: "Jack", 12: "Queen", 13: "King"}
-        return names[self.value]
+        if self.value == 1 or self.value > 10:
+            return names[self.value]
+        else:
+            return False
+
+    def __eq__(self, other):
+        if type(other) is Card:
+            return self.value == other.value and self.suit == other.suit
+        else:
+            return False
 
 
 

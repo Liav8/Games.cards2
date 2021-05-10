@@ -1,16 +1,23 @@
 from Player import *
 from DeckOfCards import *
 
-#מחלקה המייצגת משחק קלפים
+
+# מחלקה המייצגת משחק קלפים
 class CardGame:
-    def __init__(self, name1, name2, num=10):
+    def __init__(self, name1="Player", name2="Player", num=10):
         self.p1 = Player(name1, num)
         self.p2 = Player(name2, num)
         self.deck = DeckOfCards()
 
-    #פונקציה שיוצרת משחק חדש רק אם לא נוצר כבר ומחלקת את החפיסה בין שני השמקנים
+    def __repr__(self):
+        return f"This game's players are: {self.p1}.\nAnd {self.p2}"
+
+    def show(self):
+        print(f"This game's players are: {self.p1}.\nAnd {self.p2}")
+
+    # פונקציה שיוצרת משחק חדש רק אם לא נוצר כבר ומחלקת את החפיסה בין שני השמקנים
     def new_game(self):
-        if len(self.deck) != 52:
+        if len(self.deck.cards) != 52:
             raise Exception("You can't reset a game once it started")
         else:
             self.deck.shuffle()
@@ -25,11 +32,13 @@ class CardGame:
             return self.p2
         else:
             return None
+
     # פעולה שמנהלת סיבוב ומדפיסה את המנצח בהתאם
     def round(self):
         c1 = self.p1.get_card()
         c2 = self.p2.get_card()
-        print(f"P1's card is: {c1.value} of {c1.suit}, P2's card is: {c2.value} of {c2.suit}")
+        print(f"{self.p1.name} card is: {c1.value} of {c1.suit}, {self.p2.name} card is: {c2.value} of {c2.suit}")
+
         if c1.value > c2.value:
             self.p2.add_card(c1)
             self.p2.add_card(c2)
@@ -38,7 +47,7 @@ class CardGame:
             self.p1.add_card(c1)
             self.p1.add_card(c2)
             print(f"{self.p2.name} wins!")
-        elif c1.suit > c2.suit:
+        elif self.deck.names[c1.suit] > self.deck.names[c2.suit]:
             self.p2.add_card(c1)
             self.p2.add_card(c2)
             print(f"{self.p1.name} wins!")
@@ -46,5 +55,3 @@ class CardGame:
             self.p1.add_card(c1)
             self.p1.add_card(c2)
             print(f"{self.p2.name} wins!")
-
-
